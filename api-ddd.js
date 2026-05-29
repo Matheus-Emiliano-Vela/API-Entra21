@@ -11,7 +11,7 @@ form.addEventListener("submit", async function (evento) {
     const ddd = campoDdd.value.trim();
 
     msg.textContent = "";
-    resultado.textContent = "";
+    resultado.innerHTML = "";
     campoDdd.style.border = "";
 
     if (ddd === "") {
@@ -39,8 +39,25 @@ form.addEventListener("submit", async function (evento) {
         resultado.innerHTML = `
             <h3>Resultado</h3>
             <p>Estado: ${dados.state}</p>
-            <p>Cidades: ${dados.cities.join(", ")}</p>
+            <h4>Cidades:</h4>
+            <div id="lista-cidades"></div>
         `;
+
+        const listaCidades = document.querySelector("#lista-cidades");
+
+        dados.cities.forEach(function (cidade) {
+            const botaoCidade = document.createElement("button");
+
+            botaoCidade.type = "button";
+            botaoCidade.textContent = cidade;
+
+            botaoCidade.addEventListener("click", function () {
+                consultarTempo(cidade);
+            });
+
+            listaCidades.appendChild(botaoCidade);
+        });
+
     } catch (erro) {
         campoDdd.style.border = "2px solid red";
         msg.style.color = "red";
