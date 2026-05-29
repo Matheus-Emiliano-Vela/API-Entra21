@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API DDD</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Buscador De cidades por DDD</h1>
+        <p>Explore cidades brasileiras por DDD</p>
+      </header>
+
+      <section class="search-section">
+        <label for="ddd-input">Digite o DDD</label>
+        <div class="search-row">
+          <input
+            type="number"
+            id="ddd-input"
+            min="11"
+            max="99"
+            placeholder="Ex: 47"
+          />
+          <button id="search-btn">Buscar</button>
+        </div>
+      </section>
+
+      <div id="spinner" class="spinner hidden"></div>
+      <div id="error-msg" class="error-msg hidden"></div>
+
+      <section id="weather-section" class="hidden">
+        <div id="weather-card"></div>
+      </section>
+
+      <section id="cities-section" class="card hidden">
+        <h2>Cidades do estado de <span id="state-label">SC</span></h2>
+        <ul id="cities-list"></ul>
+      </section>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
