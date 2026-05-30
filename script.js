@@ -1,3 +1,4 @@
+import { buscarClima, renderizarCardClima } from "./clima.js"
 import { buscarDDD, renderizarCidades } from "./ddd.js"
 
 const inputDDD = document.getElementById("ddd-input")
@@ -71,7 +72,7 @@ function esconderSpinner() {
   spinner.classList.add("hidden")
 }
 
-function mostrarErro(msg) {
+export function mostrarErro(msg) {
   errorMsg.textContent = msg
   errorMsg.classList.remove("hidden")
 }
@@ -85,27 +86,3 @@ function limparResultados() {
   citiesSection.classList.add("hidden")
   document.getElementById("weather-section").classList.add("hidden")
 }
-
-export function renderizarCardClima(climaData) {
-    const section = document.getElementById("weather-section")
-    const card = document.getElementById("weather-card")
-  
-    const iconeUrl = `https://openweathermap.org/img/wn/${climaData.icone}@2x.png`
-  
-    card.innerHTML = `
-        <div class="weather-card">
-          <img class="weather-icon" src="${iconeUrl}" alt="${climaData.descricao}" />
-          <div class="weather-info">
-            <h3>${climaData.cidade}</h3>
-            <div class="weather-temp">${climaData.temperatura}°C</div>
-            <div class="weather-desc">${climaData.descricao}</div>
-            <div class="weather-extra">
-              <span>Sensação ${climaData.sensacao}°C</span>
-              <span>Umidade ${climaData.umidade}%</span>
-            </div>
-          </div>
-        </div>
-      `
-  
-    section.classList.remove("hidden")
-  }
