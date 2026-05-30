@@ -9,18 +9,21 @@ function toTitleCase(str) {
 }
 
 export async function buscarDDD(ddd) {
-  const response = await fetch(`${DDD_API}${ddd}`)
+  try {
+    const response = await fetch(`${DDD_API}${ddd}`)
+    if (!response.ok) {
+      throw new Error(
+        `DDD ${ddd} não encontrado. Verifique se é um DDD brasileiro válido.`
+      )
+    }
+    const data = await response.json()
 
-  if (!response.ok) {
-    throw new Error(
-      `DDD ${ddd} não encontrado. Verifique se é um DDD brasileiro válido.`
-    )
-  }
-
-  const data = await response.json()
-  return {
-    state: data.state,
-    cities: data.cities.map(toTitleCase).sort(),
+    return {
+      state: data.state,
+      cities: data.cities.map(toTitleCase).sort(),
+    }
+  } catch (error) {
+    throw new Error("Erro desconhecido. Tente conhecer o erro!")
   }
 }
 

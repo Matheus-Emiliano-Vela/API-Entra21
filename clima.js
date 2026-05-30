@@ -20,7 +20,9 @@ export async function buscarClima(cidade) {
       umidade: dados.main.humidity,
       icone: dados.weather[0].icon,
     }
-  } catch (erro) {}
+  } catch (erro) {
+    throw new Error("Erro desconhecido. Tente conhecer o erro!")
+  }
 }
 
 export function renderizarCardClima(climaData) {
