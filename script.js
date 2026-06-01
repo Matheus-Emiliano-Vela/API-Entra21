@@ -6,6 +6,7 @@ const botaoBuscar = document.getElementById("search-btn")
 const spinner = document.getElementById("spinner")
 const errorMsg = document.getElementById("error-msg")
 const citiesSection = document.getElementById("cities-section")
+const weaterSection = document.getElementById("weather-section")
 const stateLabel = document.getElementById("state-label")
 
 inputDDD.addEventListener("input", () => {
@@ -21,10 +22,9 @@ inputDDD.addEventListener("keydown", (e) => {
 botaoBuscar.addEventListener("click", async () => {
   const ddd = inputDDD.value.trim()
 
-  if (!/^\d{2}$/.test(ddd)) {
-    mostrarErro(
-      "Digite um DDD válido com exatamente 2 dígitos. Ex: 11, 47, 21."
-    )
+  const dddValido = /^\d{2}$/.test(ddd)
+  if (!dddValido) {
+    mostrarErro("Digite um DDD válido. Ex: 11, 47")
     return
   }
 
@@ -47,9 +47,9 @@ botaoBuscar.addEventListener("click", async () => {
 
 async function onCidadeSelecionada(cidade) {
   esconderErro()
-  document.getElementById("weather-section").classList.add("hidden")
 
-  document.querySelectorAll(".city-item").forEach((el) => {
+  const cityItem = document.querySelectorAll(".city-item")
+  cityItem.forEach((el) => {
     el.classList.toggle("selected", el.textContent === cidade)
   })
 
@@ -72,7 +72,7 @@ function esconderSpinner() {
   spinner.classList.add("hidden")
 }
 
-export function mostrarErro(msg) {
+function mostrarErro(msg) {
   errorMsg.textContent = msg
   errorMsg.classList.remove("hidden")
 }
@@ -84,5 +84,5 @@ function esconderErro() {
 
 function limparResultados() {
   citiesSection.classList.add("hidden")
-  document.getElementById("weather-section").classList.add("hidden")
+  weaterSection.classList.add("hidden")
 }
