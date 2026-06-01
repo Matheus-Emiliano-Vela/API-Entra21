@@ -20,8 +20,9 @@ inputDDD.addEventListener("keydown", (e) => {
 })
 
 botaoBuscar.addEventListener("click", async () => {
-  const ddd = inputDDD.value.trim()
+  limparResultados()
 
+  const ddd = inputDDD.value.trim()
   const dddValido = /^\d{2}$/.test(ddd)
   if (!dddValido) {
     mostrarErro("Digite um DDD válido. Ex: 11, 47")
@@ -29,7 +30,6 @@ botaoBuscar.addEventListener("click", async () => {
   }
 
   esconderErro()
-  limparResultados()
   mostrarSpinner()
 
   try {
