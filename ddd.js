@@ -4,7 +4,7 @@ function toTitleCase(str) {
   return str
     .toLowerCase()
     .split(" ")
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
     .join(" ")
 }
 
@@ -20,7 +20,7 @@ export async function buscarDDD(ddd) {
 
     return {
       state: data.state,
-      cities: data.cities.map(toTitleCase).sort(),
+      cities: data.cities.map(city => toTitleCase(city)).sort(),
     }
   } catch (error) {
     throw new Error("Erro desconhecido. Tente conhecer o erro!")
