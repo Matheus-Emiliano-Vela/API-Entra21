@@ -21,7 +21,7 @@ export async function buscarClima(cidade) {
       icone: dados.weather[0].icon,
     }
   } catch (erro) {
-    throw new Error("Erro desconhecido. Tente conhecer o erro!")
+    throw new Error("Erro desconhecido. Tente novamente.")
   }
 }
 

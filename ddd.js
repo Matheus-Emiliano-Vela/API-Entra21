@@ -23,7 +23,7 @@ export async function buscarDDD(ddd) {
       cities: data.cities.map(city => toTitleCase(city)).sort(),
     }
   } catch (error) {
-    throw new Error("Erro desconhecido. Tente conhecer o erro!")
+    throw new Error("Erro desconhecido. Tente novamente.")
   }
 }
 
